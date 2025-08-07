@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"content="width=device-width, initial-scale=1.0">
+        <title>Login Form | Company </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    </head>
+    <body>
+        <div class ="wrapper">
+            <form action="/login" method="POST">
+                <h1> Staff Login </h1>
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+
+                <div class="input-box">
+                    <i class='bx bx-envelope'></i>
+                    <input type="email"  name="email" placeholder="Email" required />
+                    
+
+                </div>
+                 <div class="input-box">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" name ="password" placeholder="Password" id="password" required />
+                    <span class ="toggle" onclick="togglePassword()">
+                        <i class='bx bx-show'></i>
+                    </span>
+                    
+                </div>
+                <button type="submit" class="btn">Login</button>
+               
+
+            </form>
+        </div>
+        <script>
+            function togglePassword() {
+                const password = document.getElementById("password");
+                const icon = document.querySelector(".toggle i");
+
+                if (password.type === "password") {
+                    password.type = "text";
+                    icon.classList.remove("bx-show");
+                    icon.classList.add("bx-hide");
+                } else {
+                    password.type = "password";
+                    icon.classList.remove("bx-hide");
+                    icon.classList.add("bx-show");
+                }
+            }
+        </script>
+    </body>
+</html>

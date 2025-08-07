@@ -1,0 +1,183 @@
+
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffd500;
+    color: #333;
+}
+
+header {
+    background-color: #003f88;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 80vh;
+}
+
+.container {
+    background:white;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+blockquote {
+    font-style: italic;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #e0f7fa;
+    border-left: 5px solid #0077b6;
+    color: #004466;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.controls button,
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0077b6;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.controls button:hover,
+.btn:hover {
+    background-color: #005f87;
+}
+
+.cancel-btn {
+    background-color: #cccccc;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #999999;
+}
+#mic-status{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+
+}
+#mic-status i{
+    font-size: 28px;
+}
+.mic-recording{
+    color: red;
+    animation: pulse 1s infinite;
+}
+.mic-idle{
+    color: #333;
+}
+@keyframes pulse{
+    0% {transform: scale(1);opacity: 1;}
+    50% {transform: scale(1.1);opacity: 0.6;}
+    100% {transform: scale(1);opacity: 1;}
+}
+
+audio {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#statusMsg,
+#verify-message {
+    margin-top: 1rem;
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+#recording-timer {
+    font-family: monospace;
+    font-weight: bold;
+    color: red;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #0077b6;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.flash-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e0ffe0;
+    color: #2e7d32;
+    padding: 12px 18px;
+    border: 1px solid #2e7d32;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .controls button {
+        width: 100%;
+    }
+}
+.verify-section {
+    margin-top: 30px; 
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Authentication | Company</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='voice_auth.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+<body>
+    <header>
+        <h1>Voice Verification </h1>
+    </header>
+    <main>
+        <div class="container">
+            <p>Please read the following sentence clearly into your microphone:</p>
+            <blockquote>"My voice is my password. Verify me!"</blockquote>
+            <form id="voiceVerifyForm" method="POST" action="/voice_auth" enctype="multipart/form-data">
+                <div class="controls">
+                    <button type="button" id="recordbtn"><i class='bx bx-microphone'></i> Record</button>
+                    <button type="button" id="stopbtn" disabled><i class='bx bx-stop-circle'></i> Stop recording</button>
+                    <button type="button" id="refreshbtn"><i class='bx bx-refresh'></i> Refresh</button>
+                </div>
+
+                
+                <div id="mic-status" class="mic-idle">
+                    <i id="mic-icon" class='bx bx-microphone'></i>
+                    <span id="recording-text">Not recording</span>
+                    <span id="recording-timer" style="margin-left: 8px;">00:00</span>
+                </div>
+
+                
+                <input type="hidden" name="voiceData" id="voice_record">
+                <input type="hidden" id="ip_address" name="ipAddress">
+                <input type="hidden" id="device_id" name="deviceId">
+                <input type="hidden" id="timestamp" name="timestamp">
+
+                
+                <div class="verify-section">
+                    <button id="verifybtn" type="submit" class="btn btn-primary">Verify</button>
+                    <p id="verify-message">{{ error }}</p>
+                </div>
+            </form>
+        </div>
+
+        <div id="loading-screen" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <audio id="audioPlayback" controls style="display: none;"></audio>
+        <p id="statusMsg"></p>
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+  {% if msgs %}
+    <div id="flash">
+      {% for cat, msg in msgs %}
+        <p class="flash {{ cat }}">{{ msg }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<script>
+  setTimeout(()=> {
+    const f = document.getElementById('flash');
+    if (f) f.remove();
+  }, 4000);
+</script>
+
+    </main>
+    
+<script>
+    function record() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                console.log("Mic access granted");
+                alert("Mic working!");
+            })
+            .catch(error => {
+                console.error("Mic error:", error);
+                alert("Mic failed: " + error.message);
+            });
+    }
+</script>
+
+<script src="{{ url_for('static', filename='js/voice_record.js') }}"></script>
+</body>
+</html>

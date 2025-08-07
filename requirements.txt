@@ -1,0 +1,8 @@
+Flask
+pydub
+librosa
+numpy
+scipy
+noisereduce
+gunicorn
+
